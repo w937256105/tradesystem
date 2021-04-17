@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <top-information></top-information>
+    <top-ul></top-ul>
+    <top-main></top-main>
+    <body-main><aside-menu></aside-menu></body-main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import topInformation from "@/components/topInformation";
+import topUl from "@/views/hszs/top/topUl";
+import topMain from "@/components/topMain";
+import bodyMain from "@/views/hszs/body/bodyMain";
+import asideMenu from "@/views/hszs/body/asideMenu";
+//import elBodyMain from "@/views/body/elBodyMain";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    topInformation,
+    topUl,
+    topMain,
+    bodyMain,
+    asideMenu
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import "assets/css/base.css";
 </style>
