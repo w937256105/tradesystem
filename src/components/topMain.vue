@@ -1,6 +1,8 @@
 <template>
   <div id="top-main">
-    <div class="top-main-body"></div>
+    <div class="top-hqzx">
+      <div style="font-size: larger;margin-left: 15px">行情中心</div>
+    </div>
   </div>
 </template>
 
@@ -14,11 +16,13 @@ export default {
   #top-main{
     display: flex;
     justify-content: center;
-    height: 240px;
     width: 100%;
+    flex-wrap: wrap;
   }
-  .top-main-body{
+  .top-hqzx{
     width: 1200px;
-    background: blanchedalmond;
+    height: 58px;
+    display: flex;
+    align-items: center;
   }
 </style>

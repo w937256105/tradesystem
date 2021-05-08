@@ -7,7 +7,7 @@
 
   >
     <el-submenu index="1">
-      <template slot="title" @click="requestUrl">
+      <template slot="title">
         <span>导航一</span>
       </template>
       <el-menu-item-group>
@@ -15,7 +15,7 @@
         <el-menu-item index="1-2" class="self-el-menu-item">选项2</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
-    <el-menu-item index="2" @click="requestUrl">
+    <el-menu-item index="2">
       <span slot="title">导航二</span>
     </el-menu-item>
     <el-menu-item index="3">
@@ -28,9 +28,6 @@
 </template>
 
 <script>
-
-import axios from "axios";
-
 export default {
   name: "asideMenu",
   methods: {
@@ -39,23 +36,7 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
-    },
-    requestUrl() {
-      axios({
-        method: 'get',
-        url: 'complex/one',
-        params: {
-          code: '000016.SH',
-          start_day: '2020-01-01',
-          end_day: '2020-02-01'
-        }
-      }).then(res => {
-        console.log(res.data.data);
-      }).catch(err => {
-        console.log(err);
-      })
     }
-
   }
 }
 </script>

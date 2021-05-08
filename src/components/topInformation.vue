@@ -2,7 +2,7 @@
   <div class="top-information">
     <div class="top-information-button">
       <div class="top-information-button-left">
-        <button>网站首页</button>
+        <button @click="toHszsMain">网站首页</button>
         <button>加收藏</button>
       </div>
       <div class="top-information-button-right">
@@ -15,7 +15,12 @@
 
 <script>
 export default {
-  name: "topInformation"
+  name: "topInformation",
+  methods: {
+    toHszsMain() {
+      this.$router.push('/hszs')
+    }
+  }
 }
 </script>
 
@@ -28,6 +33,7 @@ export default {
     height: 33px;
     width: 100%;
     background: #f7f7f7;
+    z-index: 99;
   }
   .top-information-button{
     width: 1200px;

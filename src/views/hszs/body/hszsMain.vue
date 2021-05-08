@@ -1,15 +1,13 @@
 <template>
   <div id="body-main">
-
     <div class="body-main">
       <div class="body-main-left">
         <slot></slot>
       </div>
       <div class="body-main-left" v-if="isLeftShow">
-
       </div>
       <div class="body-main-right">
-
+        <slot name="table-zs"></slot>
       </div>
     </div>
   </div>
@@ -43,11 +41,6 @@ export default {
     }
   },
   methods: {
-    btnClick(){
-      let pxTop = document.getElementsByClassName('body-main-left')
-      let pos = pxTop[0].getBoundingClientRect().top
-      console.log(pos)
-    }
     // getTop(elem){
     //   let offset = elem.offsetTop
     //   if (elem.offsetParent != null){
@@ -81,6 +74,5 @@ export default {
     display: flex;
     height: 2000px;
     width: 1020px;
-    background-color: orchid;
   }
 </style>
