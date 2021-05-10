@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="day-line"></div>
+    <div id="day-line" :style="{'width': ewidth, 'height': eheight}"></div>
   </div>
 </template>
 
@@ -11,14 +11,15 @@ export default {
   data() {
     return {
       baseData: [],
-      kData: []
+      kData: [],
+      etype: this.type
     }
   },
-  // props:{
-  //   width: 'String',
-  //   height: 'String',
-  //   time: 'String'
-  // },
+  props: [
+      'ewidth',
+      'eheight',
+      'type'
+  ],
   mounted() {
     this.echartsInit()
   },
@@ -30,7 +31,7 @@ export default {
   methods: {
     echartsInit() {
       this.$axios({
-        url: 'complex/one',
+        url: `complex/one`,
         params: {
           code: this.tsInformation.share_code,
           start_day: '2021-01-16',
@@ -290,7 +291,7 @@ export default {
 
 <style scoped>
 #day-line {
-  width: 600px;
-  height: 400px;
+  /*width: 600px;*/
+  /*height: 400px;*/
 }
 </style>

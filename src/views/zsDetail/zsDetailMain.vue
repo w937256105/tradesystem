@@ -1,6 +1,6 @@
 <template>
   <div id="zs-detail-main">
-    <day-line></day-line>
+    <day-line :ewidth="'600px'" :eheight="'400px'" :type="'week'"></day-line>
   </div>
 </template>
 

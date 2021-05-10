@@ -1,16 +1,20 @@
 <template>
   <div id="zs-chart-index">
     <div class="zs-chart-main">
-      123312312312
+      <zs-detail-head></zs-detail-head>
+      <zs-chart-button-group></zs-chart-button-group>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
 
+import ZsDetailHead from "@/views/zsDetail/zsDetailHead";
+import ZsChartButtonGroup from "@/views/zsChart/zsChartButtonGroup";
 export default {
   name: "zsChartIndex",
-  components: {}
+  components: {ZsChartButtonGroup, ZsDetailHead}
 }
 </script>
 
@@ -20,8 +24,7 @@ export default {
     justify-content: center;
   }
   .zs-chart-main{
-
     width: 1200px;
-    height: 1000px;
+    margin-top: 31px;
   }
 </style>
