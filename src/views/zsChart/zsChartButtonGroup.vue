@@ -7,6 +7,8 @@
     <button>15分钟</button>
     <button>30分钟</button>
     <button>60分钟</button>
+    <button @click="toThreeDayKline">3日振幅K线</button>
+    <button @click="toGrid">图组</button>
   </div>
 </template>
 
@@ -15,7 +17,13 @@ export default {
   name: "zsChartButtonGroup",
   methods: {
     toDayK(){
-      this.$router.push('zsChart/day')
+      this.$router.push({name : 'day'})
+    },
+    toThreeDayKline(){
+      this.$router.push({name: 'threedaykline'})
+    },
+    toGrid(){
+      this.$router.push({name: 'grid'})
     }
   }
 }

@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const hszsIndex = () => import('@/views/hszs/body/hszsIndex')
 const zsDetail = () => import('@/views/zsDetail/zsDetailIndex')
 const zsChart = () => import('@/views/zsChart/zsChartIndex')
-const dayLine = () => import('@/views/chart/big/day')
+// const dayLine = () => import('@/views/chart/big/day')
 
 const routes = [
   {
@@ -24,7 +24,18 @@ const routes = [
     children: [
       {
         path: 'day',
-        component: dayLine
+        name: 'day',
+        component: () => import('@/views/chart/big/day')
+      },
+      {
+        path: 'threedaykline',
+        name: 'threedaykline',
+        component: () => import('@/views/chart/big/threeDayKline')
+      },
+      {
+        path: 'grid',
+        name: 'grid',
+        component: () => import('@/views/zsChart/zsChartGroup/zsChartGroupIndex')
       }
     ]
   }

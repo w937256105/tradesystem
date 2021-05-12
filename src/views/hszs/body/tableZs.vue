@@ -57,6 +57,12 @@
         </template>
       </el-table-column>
       <el-table-column
+          label="昨收">
+        <template slot-scope="scope">
+          <span >{{keepTow(scope.row.open_close)}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
           label="日高">
         <template slot-scope="scope">
           <span >{{keepTow(scope.row.day_high)}}</span>

@@ -45,7 +45,9 @@
           </el-col>
         </el-row>
       </div>
-      <div></div>
+      <div>
+        <button @click="showBigChart">查看大图</button>
+      </div>
     </div>
   </div>
 </template>
@@ -67,12 +69,12 @@ export default {
       return t.toLocaleDateString()
     }
   },
-  created() {
-    console.log(this.$route.params);
-  },
   methods: {
     keepTow(data) {
       return data.toFixed(2);
+    },
+    showBigChart() {
+      this.$router.push('/zsChart')
     }
   }
 }
