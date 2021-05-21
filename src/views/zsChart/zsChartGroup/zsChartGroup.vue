@@ -7,23 +7,27 @@
 <script>
 export default {
   name: "zsChartGroup",
-  props: ['grid'],
+  data() {
+    return{
+      gridNum: this.$store.state.gridNum
+    }
+  },
   mounted() {
     this.setGrid()
   },
   methods: {
     setGrid() {
       let a = document.getElementById('zs-chart-group')
-      console.log(this.grid);
-      if(this.grid === 2){
+      console.log(this.gridNum);
+      if(this.gridNum === 2){
         a.style.gridTemplateColumns = '600px 600px'
         a.style.gridTemplateRows = '500px'
       }
-      if(this.grid === 4){
+      if(this.gridNum === 4){
         a.style.gridTemplateColumns = '600px 600px'
         a.style.gridTemplateRows = '250px 250px'
       }
-      if(this.grid === 6){
+      if(this.gridNum === 6){
         a.style.gridTemplateColumns = '400px 400px 400px'
         a.style.gridTemplateRows = '250px 250px'
       }

@@ -23,13 +23,13 @@ export default {
 
 <style scoped>
   #quote-header{
-    display: flex;
     height: 60px;
     width: 100%;
     justify-content: center;
   }
   .quote-header-menu{
     width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
   }

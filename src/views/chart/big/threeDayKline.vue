@@ -13,13 +13,23 @@ export default {
   data() {
     return{
       baseData: [],
-      rate: 0.03
+      rate: 0.03,
+      start_day: '2021-01-16'
     }
   },
   computed: {
     tsInformation(){
       return this.$store.state.tsInformation
-    }
+    },
+    end_day() {
+      return this.$timeTools.getToday()
+    },
+    // start_d() {
+    //   let temp = this.$timeTools.getPreMonth(this.end_day)
+    //   temp = this.$timeTools.getPreMonth(temp)
+    //   temp = this.$timeTools.getPreMonth(temp)
+    //   return temp
+    // }
   },
   created() {
     this.createKline()
@@ -30,8 +40,8 @@ export default {
         url: `complex/one`,
         params: {
           code: this.tsInformation.share_code,
-          start_day: '2021-01-16',
-          end_day: '2021-04-16'
+          start_day: this.start_day,
+          end_day: this.end_day
         }
       }).then(res => {
         this.baseData = this.calculateAmplitude(res.data.data)
@@ -81,8 +91,49 @@ export default {
               },
             ]
           },true)
+        chart.on('dataZoom',param => {
+          if (param.batch[0].start === 0) {
+            let end = this.baseData[0].datetime
+            this.start_day = this.$timeTools.getPreMonth(end)
+            end = this.$timeTools.getToday()
+            this.refreshData(this.start_day,end,chart)
+          }
+        })
       }).catch(err => {
         console.log(err);
+      })
+    },
+    refreshData(start, end, chart) {
+      this.$axios({
+        url: 'complex/one',
+        params: {
+          code: this.tsInformation.share_code,
+          start_day: start,
+          end_day: end
+        }
+      }).then(res => {
+        this.baseData = this.calculateAmplitude(res.data.data)
+        chart.setOption({
+          dataset: {
+            dimensions: ['datetime', 'share_code', 'name',
+              'day_low', 'day_high', 'month_low',
+              'month_high', 'open', 'day_price', 'structure', 'structure_day',
+              'avg_price_five', 'avg_price_ten', 'avg_price_twenty', 'avg_price_thirty','threeAmplitude'],
+            source: this.baseData
+          },
+          series: [
+            {
+              type: 'custom',
+              name: '日K',
+              renderItem: this.renderItem,
+              encode: {
+                x: 'datetime',
+                y: ['open', 'day_price', 'day_low', 'day_high']
+              },
+              large: true,
+            },
+          ]
+        })
       })
     },
     calculateAmplitude(data){
@@ -115,7 +166,6 @@ export default {
         fill: '#47b262'
       });
       let style = api.value(15)>this.rate ? style1:style2
-
       return {
         type: 'group',
         children: [{
@@ -139,7 +189,9 @@ export default {
     },
     changeRate(rate){
       this.rate = rate
+      this.createKline()
     }
+
   }
 }
 </script>

@@ -27,12 +27,11 @@ export default {
 
 <style scoped>
   #zs-detail-index{
-    display: flex;
-    justify-content: center;
   }
   .zs-detail-index{
     display: flex;
     flex-direction: column;
     width: 1200px;
+    margin: 0 auto;
   }
 </style>

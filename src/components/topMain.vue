@@ -14,14 +14,13 @@ export default {
 
 <style scoped>
   #top-main{
-    display: flex;
-    justify-content: center;
     width: 100%;
     flex-wrap: wrap;
   }
   .top-hqzx{
     width: 1200px;
     height: 58px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
   }

@@ -20,11 +20,10 @@ export default {
 
 <style scoped>
   #zs-chart-index{
-    display: flex;
-    justify-content: center;
+    margin-top: 31px;
   }
   .zs-chart-main{
     width: 1200px;
-    margin-top: 31px;
+    margin: 0 auto;
   }
 </style>

@@ -32,6 +32,21 @@ export default {
           tooltip: {
             trigger: 'axis'
           },
+          legend: {
+            data: ['MA5', 'MA10', 'MA20', 'MA30', '日K']
+          },
+          toolbox: {
+            show: true,
+            feature: {
+              myTool: {
+                title: '标记',
+                icon: "path://M631.637333 178.432a64 64 0 0 1 19.84 13.504l167.616 167.786667a64 64 0 0 1-19.370666 103.744l-59.392 26.304-111.424 111.552-8.832 122.709333a64 64 0 0 1-109.098667 40.64l-108.202667-108.309333-184.384 185.237333-45.354666-45.162667 184.490666-185.344-111.936-112.021333a64 64 0 0 1 40.512-109.056l126.208-9.429333 109.44-109.568 25.706667-59.306667a64 64 0 0 1 84.181333-33.28z m-25.450666 58.730667l-30.549334 70.464-134.826666 135.04-149.973334 11.157333 265.408 265.6 10.538667-146.474667 136.704-136.874666 70.336-31.146667-167.637333-167.765333z",
+                onclick: () => {
+
+                }
+              }
+            }
+          },
           dataZoom: [
             {
               type: 'inside',
@@ -101,70 +116,16 @@ export default {
                 y: ['open', 'day_price', 'day_low', 'day_high']
               }
             },
+            {
+              type: 'custom',
+              name: '标记',
+              renderItem: '',
+
+            }
           ]
         })
       })
     },
-    getToday() {
-      let day = new Date()
-      let month = day.getMonth()
-      if (month < 10){
-        month = '0'+(month+1)
-      }
-      let today = day.getDate()
-      if (today < 10){
-        today = '0' + today
-      }
-      return day.getFullYear()+'-'+month+'-'+today
-    },
-    getPreDay(date){
-      let year = date.slice(0,4)
-      let month = date.slice(5,7)
-      let day = date.slice(8,10)
-      let daysInMonth = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-      if (year%4 === 0){
-        daysInMonth[2] = 29
-      }
-      if (month-1 === 0){
-        month = 12
-        year--
-      }else {
-        month--
-      }
-      day = Math.min(day,daysInMonth[month])
-      if(month < 10){
-        month = '0' + month
-      }
-      if (day < 10){
-        day = '0' + day
-      }
-      return year+'-'+month+'-'+day
-    },
-    getYesterday(date){
-      let daysInMonth = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-      let year = date.slice(0,4)
-      let month = date.slice(5,7)
-      let day = date.slice(8,10)
-      if(day-1 === 0){
-        if(month-1 === 0){
-          year--
-          month = 12
-          day = 31
-        }else {
-          month--
-          day = daysInMonth[month]
-        }
-      }else {
-        day--
-      }
-      if(month < 10){
-        month = '0' + month
-      }
-      if (day < 10){
-        day = '0' + day
-      }
-      return year+'-'+month+'-'+day
-    }
   }
 }
 </script>

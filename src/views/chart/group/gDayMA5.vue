@@ -1,12 +1,12 @@
 <template>
-  <div class="g-day-k"></div>
+  <div class="g-day-ma5"></div>
 </template>
 
 <script>
-// import chartTools from "@/methods/chartTools";
+
 
 export default {
-  name: "gDayK",
+  name: "gDayMA5",
   computed: {
     tsInformation() {
       return this.$store.state.tsInformation
@@ -18,11 +18,10 @@ export default {
     }
   },
   created() {
-    console.log('DayK Create');
-    this.createGDK()
+    this.createGMA5()
   },
   methods: {
-    createGDK() {
+    createGMA5() {
       this.$axios({
         url: `complex/one`,
         params: {
@@ -32,9 +31,9 @@ export default {
         }
       }).then(res => {
         this.baseData = res.data.data
-        let chart = this.$echarts.getInstanceByDom(document.querySelector('.g-day-k'))
+        let chart = this.$echarts.getInstanceByDom(document.querySelector('.g-day-ma5'))
         if(chart == null){
-          chart = this.$echarts.init(document.querySelector('.g-day-k'))
+          chart = this.$echarts.init(document.querySelector('.g-day-ma5'))
         }
         chart.setOption({
           dataset: {
@@ -47,6 +46,9 @@ export default {
           tooltip: {
             trigger: 'axis'
           },
+          title: {
+            text: 'MA5'
+          },
           xAxis: {
             type: 'category'
           },
@@ -56,16 +58,15 @@ export default {
           },
           series: [
             {
-              type: 'k',
-              name: '日K',
+              type: 'line',
+              name: 'MA5',
               encode: {
                 x: 'datetime',
-                y: ['open', 'day_price', 'day_low', 'day_high']
+                y: 'avg_price_ten'
               }
             }
           ]
-        },true)
-        // chartTools.setZoom(chart)
+        }, true)
       })
     }
   }
@@ -73,7 +74,7 @@ export default {
 </script>
 
 <style scoped>
-  .g-day-k{
+  .g-day-ma5{
     width: 100%;
     height: 100%;
   }

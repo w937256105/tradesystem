@@ -55,17 +55,17 @@ export default {
 
 <style scoped>
   #body-main{
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
   }
   .body-main{
     width: 1200px;
+    margin: 0 auto;
     display: flex;
   }
   .body-main-left{
     display: flex;
     flex-direction: column;
-
     height: 70vh;
     width: 180px;
 

@@ -8,7 +8,15 @@
     <button>30分钟</button>
     <button>60分钟</button>
     <button @click="toThreeDayKline">3日振幅K线</button>
-    <button @click="toGrid">图组</button>
+<!--    <button @click="toGrid">图组</button>-->
+    <el-dropdown>
+      <button>图组</button>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item @click.native="toGrid(2)">双图</el-dropdown-item>
+        <el-dropdown-item @click.native="toGrid(4)">四图</el-dropdown-item>
+        <el-dropdown-item @click.native="toGrid(6)">六图</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </div>
 </template>
 
@@ -22,7 +30,9 @@ export default {
     toThreeDayKline(){
       this.$router.push({name: 'threedaykline'})
     },
-    toGrid(){
+    toGrid(gridNum){
+      this.$store.commit('currentGridNum',gridNum)
+      console.log('aaaaaaaaaa')
       this.$router.push({name: 'grid'})
     }
   }

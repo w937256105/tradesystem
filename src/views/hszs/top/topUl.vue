@@ -27,13 +27,12 @@ export default {
 
 <style scoped>
   #top-ul{
-    display: flex;
-    justify-content: center;
     margin-top: 35px;
     width: 100%;
   }
   .top-ul-body{
     width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
   }

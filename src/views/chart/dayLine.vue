@@ -35,7 +35,7 @@ export default {
         params: {
           code: this.tsInformation.share_code,
           start_day: '2021-01-16',
-          end_day: this.getToday()
+          end_day: this.$timeTools.getToday()
         }
       }).then(res => {
         this.baseData = res.data.data
@@ -67,13 +67,9 @@ export default {
             {
               type: 'inside',
               xAxisIndex: [0, 1],
+              start: 30,
               end: 100
-            },
-            // {
-            //   type: 'slider',
-            //   start: 20,
-            //   end: 100
-            // }
+            }
           ],
           legend: {
             data: ['MA5', 'MA10', 'MA20', 'MA30', '日K']
@@ -193,9 +189,8 @@ export default {
         dayLine.on('dataZoom', param => {
           if (param.batch[0].start === 0) {
             let end = this.baseData[0].datetime
-            let start = this.getPreDay(end)
-            end = this.getYesterday(end)
-            console.log(start,end)
+            let start = this.$timeTools.getPreMonth(end)
+            end = this.$timeTools.getYesterday(end)
             this.refreshData(start,end,dayLine)
           }
         })
@@ -211,7 +206,6 @@ export default {
         }
       }).then(res => {
         let reData = res.data.data
-        console.log(reData);
         reData.push.apply(reData,this.baseData)
         this.baseData = reData
         chart.setOption({
@@ -290,66 +284,6 @@ export default {
         })
       })
     },
-    getToday() {
-      let day = new Date()
-      let month = day.getMonth()
-      if (month < 10){
-        month = '0'+(month+1)
-      }
-      let today = day.getDate()
-      if (today < 10){
-        today = '0' + today
-      }
-      return day.getFullYear()+'-'+month+'-'+today
-    },
-    getPreDay(date){
-      let year = date.slice(0,4)
-      let month = date.slice(5,7)
-      let day = date.slice(8,10)
-      let daysInMonth = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-      if (year%4 === 0){
-        daysInMonth[2] = 29
-      }
-      if (month-1 === 0){
-        month = 12
-        year--
-      }else {
-        month--
-      }
-      day = Math.min(day,daysInMonth[month])
-      if(month < 10){
-        month = '0' + month
-      }
-      if (day < 10){
-        day = '0' + day
-      }
-      return year+'-'+month+'-'+day
-    },
-    getYesterday(date){
-      let daysInMonth = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-      let year = date.slice(0,4)
-      let month = date.slice(5,7)
-      let day = date.slice(8,10)
-      if(day-1 === 0){
-        if(month-1 === 0){
-          year--
-          month = 12
-          day = 31
-        }else {
-          month--
-          day = daysInMonth[month]
-        }
-      }else {
-        day--
-      }
-      if(month < 10){
-        month = '0' + month
-      }
-      if (day < 10){
-        day = '0' + day
-      }
-      return year+'-'+month+'-'+day
-    }
   }
 }
 
